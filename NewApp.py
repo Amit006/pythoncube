@@ -24,15 +24,16 @@ workspace = Workspace()
 workspace.register_default_store("sql", url="postgresql://postgres:N#123456@localhost/willowood")
 workspace.import_model("Sales_model.json")
 
-browser = workspace.browser("clv_sales_registerFCube")
+browser = workspace.browser("clv_sales_registerfcube")
 
 result = browser.aggregate()
 
 print(result.summary["record_count"])
 
-print(result.summary["amount_sum"])
+print(result.summary["Qty"])
+print(result.summary["Value"])
 
-result = browser.aggregate(drilldown=["fiscal_year"])
-
-for record in result:
-    print(' record: ', record)
+# result = browser.aggregate(drilldown=["fiscal_year"])
+#
+# for record in result:
+#     print(' record: ', record)

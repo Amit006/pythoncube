@@ -5,7 +5,7 @@
          "levels": [
                 {
                     "name":"category",
-                    "label":"Category",
+                    "label":"category",
                     "attributes": ["category"]
                 },
                 {
@@ -20,24 +20,47 @@
                 }
             ]
         },
-        {"name":"Billing_Date", "role": "time"}
+        {"name":"billing_date", "role": "time"},
+        {"name":"plant"},
+        {"name":"material_code"},
+        {"name":"brand_code"},
+        {"name":"category"},
+        {"name":"state_code"},
+        {"name":"bh_master_code"},
+        {"name":"zm_master_code"},
+        {"name":"rm_master_code"},
+        {"name":"rm_master_code"},
+        {"name":"am_master_code"},
+        {"name":"executive_master_code"},
+        {"name":"rm_master"},
+        {"name":"zm_master"},
+        {"name":"bh_master"},
+        {"name":"am_master"},
+        {"name":"executive_master"},
+        {"name":"brand_desc"},
+        {"name":"material_desc"},
+        {"name":"depot"},
+        {"name":"state"}
     ],
     "cubes": [
         {
-            "name": "clv_sales_registerFCube",
+            "name": "clv_sales_registerfcube",
             "dimensions": [
-              "Billing_Date","Plant","Material_Code","Brand_Code","Category","State_Code","BH_Master_Code","ZM_Master_Code","RM_MASTER_CODE","AM_Master_Code","Executive_Master_Code","RM_Master","ZM_Master","BH_Master","AM_Master","Executive_Master","Brand_Desc","Material_Desc","DEPOT","State"
+              "billing_date","plant","material_code","brand_code",
+              "category","state_code","bh_master_code","zm_master_code","rm_master_code","am_master_code",
+              "executive_master_code","rm_master","zm_master","bh_master","am_master","executive_master",
+              "brand_desc","material_desc","depot","state"
             ],
-            "measures": [{"name":"Bill_Qty_in_SKU", "label":"Bill_Qty_in_SKU"}, {"name":"Total_Value_after_discount", "label":"Total_Value_after_discount"}],
+            "measures": [{"name":"bill_qty_in_sku", "label":"bill_qty_in_sku"}, {"name":"total_value_after_discount", "label":"total_value_after_discount"}],
             "aggregates": [
                     {
                         "name": "Value",
                         "function": "sum",
-                        "measure": "Total_Value_after_discount"
+                        "measure": "total_value_after_discount"
                     }, {
                         "name": "Qty",
                         "function": "sum",
-                        "measure": "Bill_Qty_in_SKU"
+                        "measure": "bill_qty_in_sku"
                     },
                     {
                         "name": "record_count",
@@ -45,11 +68,11 @@
                     }
                 ],
             "mappings": {
-                          "item.line_item": "Material_Code",
-                          "item.lineItem_label": "Material_Desc",
-                          "item.subcategory": "Brand_Code",
-                          "item.subcategory_label": "Brand_Desc",
-                          "item.category": "Category"
+                          "item.line_item": "material_code",
+                          "item.lineItem_label": "material_desc",
+                          "item.subcategory": "brand_code",
+                          "item.subcategory_label": "brand_desc",
+                          "item.category": "category"
                          },
             "info": {
                 "min_date": "2018-01-01",
@@ -58,29 +81,3 @@
         }
     ]
 }
-
-//customercode
-//customername
-//Billing_Date
-//Plant
-//Material_Code
-//Brand_Code
-//Category
-//State_Code
-//BH_Master_Code
-//ZM_Master_Code
-//RM_MASTER_CODE
-//AM_Master_Code
-//Executive_Master_Code
-//RM_Master
-//ZM_Master
-//BH_Master
-//AM_Master
-//Executive_Master
-//Brand_Desc
-//Material_Desc
-//DEPOT
-//State
-//flag
-//Bill_Qty_in_SKU
-//Total_Value_after_discount
