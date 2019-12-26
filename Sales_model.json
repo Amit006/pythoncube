@@ -1,0 +1,86 @@
+{
+    "dimensions": [
+        {
+         "name":"item",
+         "levels": [
+                {
+                    "name":"category",
+                    "label":"Category",
+                    "attributes": ["category"]
+                },
+                {
+                    "name":"subcategory",
+                    "label":"Sub-category",
+                    "attributes": ["subcategory", "subcategory_label"]
+                },
+                {
+                    "name":"line_item",
+                    "label":"Line Item",
+                    "attributes": ["line_item", "lineItem_label"]
+                }
+            ]
+        },
+        {"name":"Billing_Date", "role": "time"}
+    ],
+    "cubes": [
+        {
+            "name": "clv_sales_registerFCube",
+            "dimensions": [
+              "Billing_Date","Plant","Material_Code","Brand_Code","Category","State_Code","BH_Master_Code","ZM_Master_Code","RM_MASTER_CODE","AM_Master_Code","Executive_Master_Code","RM_Master","ZM_Master","BH_Master","AM_Master","Executive_Master","Brand_Desc","Material_Desc","DEPOT","State"
+            ],
+            "measures": [{"name":"Bill_Qty_in_SKU", "label":"Bill_Qty_in_SKU"}, {"name":"Total_Value_after_discount", "label":"Total_Value_after_discount"}],
+            "aggregates": [
+                    {
+                        "name": "Value",
+                        "function": "sum",
+                        "measure": "Total_Value_after_discount"
+                    }, {
+                        "name": "Qty",
+                        "function": "sum",
+                        "measure": "Bill_Qty_in_SKU"
+                    },
+                    {
+                        "name": "record_count",
+                        "function": "count"
+                    }
+                ],
+            "mappings": {
+                          "item.line_item": "Material_Code",
+                          "item.lineItem_label": "Material_Desc",
+                          "item.subcategory": "Brand_Code",
+                          "item.subcategory_label": "Brand_Desc",
+                          "item.category": "Category"
+                         },
+            "info": {
+                "min_date": "2018-01-01",
+                "max_date": "2020-12-31"
+            }
+        }
+    ]
+}
+
+//customercode
+//customername
+//Billing_Date
+//Plant
+//Material_Code
+//Brand_Code
+//Category
+//State_Code
+//BH_Master_Code
+//ZM_Master_Code
+//RM_MASTER_CODE
+//AM_Master_Code
+//Executive_Master_Code
+//RM_Master
+//ZM_Master
+//BH_Master
+//AM_Master
+//Executive_Master
+//Brand_Desc
+//Material_Desc
+//DEPOT
+//State
+//flag
+//Bill_Qty_in_SKU
+//Total_Value_after_discount
